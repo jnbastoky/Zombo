@@ -1,0 +1,15 @@
+version: "3.9"
+
+services:
+  jekyll:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "4000:4000"        # Map Jekyll's development server port
+      - "35729:35729"      # Map Livereload port (optional, if using --livereload)
+    volumes:
+      - ./:/usr/src/app     # Mount the current directory to the container
+    command: bundle exec jekyll serve --livereload --host 0.0.0.0
+    # network_mode: host
+
