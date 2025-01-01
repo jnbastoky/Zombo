@@ -1,6 +1,12 @@
 # Zombo Site
 
 ## Create Site
+Create [orphan branch](https://docs.github.com/en/pages/setting-up-a-github-pages-site-with-jekyll/creating-a-github-pages-site-with-jekyll)
+```bash
+git checkout --orphan hugo
+git rm -rf .
+rm -rf ./*
+```
 
 Create temporary `Docker` container
 ```bash
@@ -36,3 +42,12 @@ Copy config files from repo `config/_default` except `module.toml`
 
 ## Customize
 https://jpanther.github.io/congo/docs/getting-started/
+
+
+## Commit
+``` bash
+git add .
+git commit -m 'Initial hugo app'
+git remote add origin https://github.com/jnbastoky/Zombo.git
+git push -u origin hugo
+```
