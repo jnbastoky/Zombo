@@ -1,7 +1,7 @@
 +++
 title = 'Welcome to Zombo.bot'
 date = 2025-01-01T16:56:20Z
-draft = true
+draft = false
 categories = ["update"]
 tags = ["zombo"]
 +++
