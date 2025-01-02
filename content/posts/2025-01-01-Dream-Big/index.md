@@ -37,7 +37,7 @@ Our plan is to start with the basics. We need:
 
 Two drive wheels wheels get started and maybe upgrade those to tracks later.  These will be driven by 2 DC motors.
 
-A sonar sensor will will provide some collision avoidance.  _Zombo_ will drive forward until it detects a potential collision.  It will stop rotate some number of degrees and drive forward again until it detects another potential collision.
+A sonar sensor will provide some collision avoidance.  _Zombo_ will drive forward until it detects a potential collision.  It will stop, rotate some number of degrees, and drive forward again until it detects another potential collision.
 
 #### Commands
 
