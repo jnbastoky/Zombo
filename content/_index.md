@@ -1,3 +1,3 @@
-___Zombo___ is a robot.
+# ___Zombo___'s Blog
 
 > A robot to do all my chores.

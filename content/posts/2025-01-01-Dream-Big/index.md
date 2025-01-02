@@ -2,12 +2,13 @@
 title = 'Dream Big'
 date = 2025-01-01T21:47:26Z
 draft = false
-categories = [""]
-tags = [""]
+categories = ["update"]
+tags = ["zombo"]
 thumbnail = "*brainstorming*"
 +++
 
-We know we want to build a robot, but there are so many possibilities.  Where do we start?  A brainstorming session.
+We know we want to build a robot, but there are so many possibilities.  Where do
+we start?  A brainstorming session.
 
 ## The Brainstorming
 
@@ -24,7 +25,8 @@ I like to start with some pen and paper:
 - Lights
 - Batteries
 
-The results are a mix of some practical ideas and some more ambitious ones, but we can _Dream Big_!
+The results are a mix of some practical ideas and some more ambitious ones, but we
+can _Dream Big_!
 
 ### The Name
 
@@ -36,9 +38,12 @@ Our plan is to start with the basics. We need:
 
 #### Locomotion and Navigation
 
-Two drive wheels wheels get started and maybe upgrade those to tracks later.  These will be driven by 2 DC motors.
+Two drive wheels to get started and maybe upgrade those to tracks later.  These will
+be driven by 2 DC motors.
 
-A sonar sensor will provide some collision avoidance.  _Zombo_ will drive forward until it detects a potential collision.  It will stop, rotate some number of degrees, and drive forward again until it detects another potential collision.
+A sonar sensor will provide some collision avoidance.  _Zombo_ will drive forward
+until it detects a potential collision.  It will stop, rotate some number of degrees,
+and drive forward again until it detects another potential collision.
 
 #### Commands
 
@@ -46,4 +51,5 @@ We will use voice commands to provide input to _Zombo_.
 
 #### Lights
 
-LED can provide us some feedback on what _Zombo_ is doing as well as make it look cool.
+LED can provide us some feedback on what _Zombo_ is doing as well as make it look
+cool.
