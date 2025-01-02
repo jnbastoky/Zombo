@@ -4,6 +4,7 @@ date = 2025-01-01T21:47:26Z
 draft = false
 categories = [""]
 tags = [""]
+thumbnail = "*brainstorming*"
 +++
 
 We know we want to build a robot, but there are so many possibilities.  Where do we start?  A brainstorming session.
