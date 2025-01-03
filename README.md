@@ -52,9 +52,15 @@ Copy config files from repo `config/_default` except `module.toml`
 
 ## Commit
 
-``` bash
+```bash
 git add .
 git commit -m 'Initial hugo app'
 git remote add origin https://github.com/jnbastoky/Zombo.git
 git push -u origin hugo
+```
+
+## Adding Posts
+
+```bash
+hugo new content posts/YYYY-MM-DD-Title/index.md
 ```
