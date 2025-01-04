@@ -11,24 +11,19 @@ display.add_text("I'm Zombo!", x=10, y=10, scale=2)
 label_status = display.add_text('<status>', x=0, y=32)
 label_cmd = display.add_text('<cmd>', x=0, y=50)
 
-# Setup Button
-display_btn_A = Button(board.D9)
-display_btn_B = Button(board.D6)
-display_btn_C = Button(board.D5)
-
 while True:
     # Get Command Inputs
     pass
 
     # Evaluation buttons on Display Feather
-    if display_btn_A.value():
+    if display.buttons.A.value():
         if not display.is_awake():
             display.wake()
 
-    if display_btn_B.value():
+    if display.buttons.B.value():
         pass
 
-    if display_btn_C.value():
+    if display.buttons.C.value():
         if display.is_awake():
             display.sleep()
 
@@ -37,7 +32,7 @@ while True:
                          "I'm awake" if display.is_awake() else "I'm asleep")
     label_cmd.text = (
         'ABC Buttons: '
-        + ('1' if display_btn_A.value() else '0')
-        + ('1' if display_btn_B.value() else '0')
-        + ('1' if display_btn_C.value() else '0')
+        + ('1' if display.buttons.A.value() else '0')
+        + ('1' if display.buttons.B.value() else '0')
+        + ('1' if display.buttons.C.value() else '0')
     )
