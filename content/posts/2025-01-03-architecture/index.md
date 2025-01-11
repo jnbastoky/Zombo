@@ -3,7 +3,7 @@ title = 'Architecture'
 date = 2025-01-03T18:05:05Z
 draft = false
 categories = ["update"]
-tags = ["zombo"]
+tags = ["zombo", "architecture"]
 thumbnail = ""
 +++
 
@@ -44,6 +44,7 @@ We will detail these systems in future post.
 
 ## Diagram
 
+{{< generic-figure caption="Architecture" >}}
 {{< mermaid >}}
 flowchart
     MCU(Microcontroller)
@@ -62,5 +63,6 @@ flowchart
               I2C_Main <---> Voice[Voice Recognition]
               I2C_Main <--> Battery[Battery Monitor]
 {{< /mermaid >}}
+{{< /generic-figure >}}
 
 [adafruit-feather]: https://www.adafruit.com/product/5323
