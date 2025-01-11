@@ -1,7 +1,7 @@
 +++
 title = 'The Display'
 date = 2025-01-10
-draft = true
+draft = false
 categories = ["update"]
 tags = ["zombo", "display"]
 thumbnail = "display.png"
