@@ -5,3 +5,5 @@ RUN apt install -y hugo
 
 EXPOSE 1313
 
+WORKDIR /app
+
