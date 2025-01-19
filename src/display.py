@@ -1,9 +1,12 @@
 import board
 import displayio
+import asyncio
+
 from adafruit_display_text import bitmap_label
 import adafruit_displayio_sh1107
 from i2cdisplaybus import I2CDisplayBus
 import terminalio
+from keypad import Keys
 
 from button import Button
 
@@ -17,10 +20,37 @@ displayio.release_displays()
 class Display:
     class Buttons:
         '''This class encapsulates the 3 on-board buttons.'''
-        def __init__(self, pin_A, pin_B, pin_C):
-            self.A = Button(pin_A)
-            self.B = Button(pin_B)
-            self.C = Button(pin_C)
+        def __init__(self, pin_A, pin_B, pin_C, callback_A=None, callback_B=None, callback_C=None):
+            self.pin_A = pin_A
+            self.callback_A = callback_A
+            self.pin_B = pin_B
+            self.callback_B = callback_B
+            self.pin_C = pin_C
+            self.callback_C = callback_C
+
+        def set_callback(self, button, callback):
+            if button == 'A':
+                self.callback_A = callback
+            elif button == 'B':
+                self.callback_B = callback
+            elif button == 'C':
+                self.callback_C = callback
+            else:
+                raise ValueError(f'button "{button}" not recognized')
+
+        async def task(self):
+            pins = (self.pin_A, self.pin_B, self.pin_C)
+            callbacks = (self.callback_A, self.callback_B, self.callback_C)
+            buttons = Keys(pins, value_when_pressed=False)
+            while True:
+                event = buttons.events.get()
+                if event:
+                    # print(event)
+                    callback = callbacks[event.key_number]
+                    if callback:
+                        callback(event)
+                # Let another task run.
+                await asyncio.sleep(0)
 
     def __init__(self,
                  address=0x3C,

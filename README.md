@@ -57,6 +57,14 @@ circup install -r circuitpython-requirements.txt
 
 _Note:_ `circup` downloads and stores copies of the packages in `~/.local/share/circup/` or whatever the output of `python -m site --user-base` returns.
 
+Install Voice Recognition Libraries
+
+```bash
+wget -P lib/ \
+    https://raw.githubusercontent.com/DFRobot/DFRobot_DF2301Q/refs/heads/master/python/circuitpython/DFRobot_DF2301Q.py \
+    https://raw.githubusercontent.com/DFRobot/DFRobot_DF2301Q/refs/heads/master/python/circuitpython/DFRobot_DF2301Q_Commands.py
+```
+
 ## Serial Console
 
 ```bash

@@ -1,9 +1,13 @@
+import asyncio
+
 import board
 import busio
-from adafruit_bus_device.i2c_device import I2CDevice
 
-from display import Display
 from distance import Distance
+from display import Display
+from motors import Motors
+from voice import Voice
+
 
 # Configure I/O & Buses
 i2c_main = board.I2C()
@@ -15,31 +19,41 @@ display.add_text("I'm Zombo!", x=10, y=10, scale=2)
 label_status = display.add_text('<status>', x=0, y=32)
 label_cmd = display.add_text('<cmd>', x=0, y=50)
 
+
 # Sonar Distance Sensor
 dist_front = Distance(0x57, i2c_dist)
 
-while True:
-    # Get Command Inputs
-    pass
+voice = Voice(address=0x64, i2c=i2c_main)
 
-    # Evaluation buttons on Display Feather
-    if display.buttons.A.value():
-        if not display.is_awake():
-            display.wake()
+motors = Motors(address=0x61, i2c=i2c_main)
+left_motor = motors.motor1
+right_motor = motors.motor2
 
-    if display.buttons.B.value():
-        pass
 
-    if display.buttons.C.value():
+async def display_task(display):
+    while True:
+        # Update Status and Diagnostics
+        label_status.text = ('status: '
+                             "I'm awake" if display.is_awake() else "I'm asleep")
+        await asyncio.sleep(0)
+
+
+def display_toggle(event):
+    if event.released:
         if display.is_awake():
             display.sleep()
+        elif not display.is_awake():
+            display.wake()
 
-    # Update Status and Diagnostics
-    label_status.text = ('status: '
-                         f'dist {dist_front.read()}')
-    label_cmd.text = (
-        'ABC Buttons: '
-        + ('1' if display.buttons.A.value() else '0')
-        + ('1' if display.buttons.B.value() else '0')
-        + ('1' if display.buttons.C.value() else '0')
+
+async def main():
+    await asyncio.gather(
+        display_task(display),
+        display.buttons.task(),
+        voice.task(),
     )
+
+
+display.buttons.set_callback("C", display_toggle)
+
+asyncio.run(main())
