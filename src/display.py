@@ -22,25 +22,25 @@ class Display:
         '''This class encapsulates the 3 on-board buttons.'''
         def __init__(self, pin_A, pin_B, pin_C, callback_A=None, callback_B=None, callback_C=None):
             self.pin_A = pin_A
-            self.callback_A = callback_A
+            self._callback_A = callback_A
             self.pin_B = pin_B
-            self.callback_B = callback_B
+            self._callback_B = callback_B
             self.pin_C = pin_C
-            self.callback_C = callback_C
+            self._callback_C = callback_C
 
         def set_callback(self, button, callback):
             if button == 'A':
-                self.callback_A = callback
+                self._callback_A = callback
             elif button == 'B':
-                self.callback_B = callback
+                self._callback_B = callback
             elif button == 'C':
-                self.callback_C = callback
+                self._callback_C = callback
             else:
                 raise ValueError(f'button "{button}" not recognized')
 
         async def task(self):
             pins = (self.pin_A, self.pin_B, self.pin_C)
-            callbacks = (self.callback_A, self.callback_B, self.callback_C)
+            callbacks = (self._callback_A, self._callback_B, self._callback_C)
             buttons = Keys(pins, value_when_pressed=False)
             while True:
                 event = buttons.events.get()
