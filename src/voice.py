@@ -26,17 +26,30 @@ class Voice(DFRobot_DF2301Q.DFRobot_DF2301Q_I2C):
     # def getCommandString:
     #     pass
 
-    def set_cmd_callback(self, command, callback):
-        self._cmd_callbacks[command] = callback
+    def set_cmd_callback(self, command, callback, is_async=False):
+        self._cmd_callbacks[command] = (callback, is_async)
 
-    def set_all_callback(self, callback):
-        self._all_callback = callback
-
+    def set_all_callback(self, callback, is_async=False):
+        self._all_callback = (callback, is_async)
+ 
     async def task(self):
         while True:
             cmd = self.get_CMDID()
-            self._all_callback(cmd)
-            callback = self._cmd_callbacks.get(cmd)
+
+            # callback for all commands
+            if self._all_callback:
+                callback, is_async = self._all_callback
+                if is_async:
+                    await callback(cmd)
+                else:
+                    callback(cmd)
+
+            # callback for current command
+            callback, is_async = self._cmd_callbacks.get(cmd)
             if callback:
-                callback(cmd)
-            await asyncio.sleep(0.5)
+                if is_async:
+                    await callback(cmd)
+                else:
+                    callback(cmd)
+
+            await asyncio.sleep(0.01)
