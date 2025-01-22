@@ -1,5 +1,4 @@
 import asyncio
-from time import sleep
 
 import board
 import busio
@@ -9,8 +8,6 @@ from display import Display
 from motors import Motors
 from voice import Voice
 
-
-sleep(5)
 
 # Configure I/O & Buses
 i2c_main = board.I2C()
@@ -84,7 +81,7 @@ async def avoid_collision():
 
 
 async def motors_distance(value):
-    print('motors dist')
+    # print('motors dist')
     if value < 50.0:
         print('need to avoid collision')
         await avoid_collision()                    

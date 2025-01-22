@@ -45,7 +45,7 @@ class Voice(DFRobot_DF2301Q.DFRobot_DF2301Q_I2C):
                     callback(cmd)
 
             # callback for current command
-            callback, is_async = self._cmd_callbacks.get(cmd)
+            callback, is_async = self._cmd_callbacks.get(cmd, (None, None))
             if callback:
                 if is_async:
                     await callback(cmd)
